@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { ClienteUpdateDiolgueComponent } from './cliente-update-diolgue/cliente-update-diolgue.component';
 
 @Component({
   selector: 'app-cliente',
@@ -49,18 +50,32 @@ export class ClienteComponent implements OnInit {
   }
 
   openDialog(element): void {
-    const dialogRef = this.dialog.open(ClienteDialogueComponent, {
-      width: 'auto',
-      data: {
-        element
-      }
-    });
+    if (element === null) {
+      const dialogRef = this.dialog.open(ClienteDialogueComponent, {
+        width: 'auto',
+        data: {
+          element
+        }
+      });
 
-    dialogRef.afterClosed().subscribe(
-      data => {
-        this.getClientes();
-      }
-    );
+      dialogRef.afterClosed().subscribe(
+        data => {
+          this.getClientes();
+        }
+      );
+    } else {
+      const dialogRef = this.dialog.open(ClienteUpdateDiolgueComponent, {
+        width: '50%',
+        data: {
+          element
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(
+        data => {
+          this.getClientes();
+        }
+      );
+    }
   }
-
 }

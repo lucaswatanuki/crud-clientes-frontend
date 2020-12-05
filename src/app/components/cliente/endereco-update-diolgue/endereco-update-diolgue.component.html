@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Atualizar Endereco</h1>
+<form name="form" [formGroup]='formularioEndereco'>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Logradouro</mat-label>
+        <input [(ngModel)]="endereco.nome" formControlName="nome" matInput placeholder="Nome" required>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>Número</mat-label>
+        <input [(ngModel)]="endereco.numero" formControlName="numero" matInput placeholder="Numero" required>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>CEP</mat-label>
+        <input [(ngModel)]="endereco.cep" formControlName="cep" matInput placeholder="CEP" required>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <input [(ngModel)]="endereco.cidade" formControlName="cidade" matInput placeholder="Cidade" required>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Estado" formControlName="estado">
+          <mat-option *ngFor="let estado of estados" [value]="estado.sigla">
+            {{ estado.nome }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formularioEndereco.controls['estado'].hasError('required')">
+          Estado é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="update(endereco)" *ngIf="!data.element"> Salvar </button>
+</div>

@@ -21,6 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { ClienteUpdateDiolgueComponent } from './components/cliente/cliente-update-diolgue/cliente-update-diolgue.component';
+import { EnderecoUpdateDiolgueComponent } from './components/cliente/endereco-update-diolgue/endereco-update-diolgue.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MatCardModule } from '@angular/material/card';
     ClienteComponent,
     CadastroComponent,
     ClienteDialogueComponent,
-    ExemploComponent
+    ExemploComponent,
+    ClienteUpdateDiolgueComponent,
+    EnderecoUpdateDiolgueComponent
   ],
   imports: [
     BrowserModule,

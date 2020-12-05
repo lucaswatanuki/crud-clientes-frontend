@@ -1,6 +1,6 @@
 <div class="grid-container">
   <div>
-    <button mat-raised-button color="primary" style="margin: 20px">
+    <button mat-raised-button color="primary" style="margin: 20px" (click)="openDialog(null)">
       Novo Cliente
       <mat-icon aria-hidden="false" aria-label="ADD icon">add</mat-icon>
     </button>
@@ -16,7 +16,6 @@
           <th mat-header-cell *matHeaderCellDef>#</th>
           <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
-
 
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef>Nome</th>

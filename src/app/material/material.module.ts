@@ -22,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 const MODULES = [
@@ -46,6 +47,7 @@ const MODULES = [
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatTabsModule
 ];
 
 @NgModule({
