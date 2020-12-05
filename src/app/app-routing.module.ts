@@ -1,3 +1,4 @@
+import { ExemploComponent } from './exemplo/exemplo.component';
 import { AuthGuard } from './service/auth.guard';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
@@ -13,10 +14,13 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'cadastro', component: CadastroComponent
+    path: 'signup', component: CadastroComponent
   },
   {
     path: 'clientes', component: ClienteComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'exemplo', component: ExemploComponent, canActivate: [AuthGuard]
   }
 ];
 

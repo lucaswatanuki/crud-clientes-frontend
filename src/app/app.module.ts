@@ -14,13 +14,22 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
+import { ClienteDialogueComponent } from './components/cliente/cliente-dialogue/cliente-dialogue.component';
+import { ExemploComponent } from './exemplo/exemplo.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ClienteComponent,
-    CadastroComponent
+    CadastroComponent,
+    ClienteDialogueComponent,
+    ExemploComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +43,11 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutModule,
     FormsModule,
     HttpClientModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
   ],
   providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]

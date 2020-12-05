@@ -12,10 +12,9 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
 
-  title = 'crud-clientes';
-  info: any;
-  admin = false;
-  user = false;
+  title = 'GESTÃO DE CLIENTES';
+  user: string;
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -29,7 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn();
-    console.log(this.isLoggedIn$);
+    this.user = this.authService.getToken();
   }
 
 

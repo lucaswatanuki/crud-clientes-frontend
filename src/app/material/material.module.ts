@@ -15,12 +15,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatDialogModule} from '@angular/material/dialog';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 const MODULES = [
@@ -43,6 +44,8 @@ const MODULES = [
   MatStepperModule,
   MatProgressSpinnerModule,
   MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 @NgModule({

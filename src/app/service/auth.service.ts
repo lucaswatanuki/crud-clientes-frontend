@@ -1,9 +1,8 @@
 import { Usuario } from './../models/usuario.model';
-import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, first } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -18,14 +17,15 @@ export class AuthService {
   baseUrl: string = environment.api;
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient) { }
 
   public login(usuario: Usuario): any {
-    return this.httpClient.post<any>(this.baseUrl + '/login.php', usuario)
-      .pipe(map(Users => {
-        this.setToken(Users[0].username);
+    console.log(usuario);
+    return this.httpClient.post<any>(this.baseUrl + 'login.php', usuario)
+      .pipe(map(user => {
+        this.setToken(user.username);
         this.getLoggedInName.emit(true);
-        return Users;
+        return user;
       }));
   }
 

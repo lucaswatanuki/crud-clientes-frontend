@@ -1,0 +1,52 @@
+<h1 mat-dialog-title *ngIf="!data.element">Adicionar Cliente</h1>
+<h1 mat-dialog-title *ngIf="data.element">Editar Dados do Cliente</h1>
+<form name="form" [formGroup]='formularioCliente'>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Nome do cliente</mat-label>
+        <input [(ngModel)]="cliente.nome" formControlName="nome" matInput placeholder="Nome" required>
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>RG</mat-label>
+        <input [(ngModel)]="cliente.rg" formControlName="rg" matInput placeholder="RG" required>
+        <mat-icon matSuffix>portrait</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>CPF</mat-label>
+        <input [(ngModel)]="cliente.cpf" formControlName="cpf" matInput placeholder="CPF" required>
+        <mat-icon matSuffix> person_pin</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone</mat-label>
+        <input [(ngModel)]="cliente.telefone" formControlName="telefone" matInput placeholder="Telefone" required>
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>Data Nascimento</mat-label>
+        <input [(ngModel)]="cliente.dataNascimento" matInput [matDatepicker]="picker" placeholder="Selecionar data">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="adicionar()" *ngIf="!data.element"> Salvar </button>
+  <button mat-raised-button color="primary" (click)="update(cliente)" *ngIf="data.element"> Salvar </button>
+</div>

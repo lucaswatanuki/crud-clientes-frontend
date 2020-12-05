@@ -8,16 +8,16 @@
     <mat-nav-list>
       <div class="profile-card">
         <img src="../assets/user-profile.jpg" alt="imagem">
-        <div class="header">
+        <div class="header" style="margin-bottom: 10px;">
+          {{user}}
         </div>
       </div>
       <mat-divider></mat-divider>
       <a mat-list-item routerLink="/criar-atividade" *ngIf="isLoggedIn$">
-        <mat-icon>assignment</mat-icon>Consultar Clientes
+        <mat-icon>assignment</mat-icon>Clientes
       </a>
-      <a mat-list-item routerLink="/autorizacoes" *ngIf="isLoggedIn$">
-        <mat-icon>assignment_turned_in</mat-icon>
-        Cadastrar Cliente
+      <a mat-list-item routerLink="/exemplo" *ngIf="isLoggedIn$">
+        <mat-icon>assignment</mat-icon>Exemplo
       </a>
     </mat-nav-list>
   </mat-sidenav>

@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
 
   login(form): void {
     this.authService.login(form.value)
-      .pipe(first())
       .subscribe(
         data => {
           this.reloadPage();
