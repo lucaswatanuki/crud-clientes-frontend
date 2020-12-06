@@ -1,4 +1,3 @@
-import { SpinnerComponent } from './shared/spinner-component/spinner-component.component';
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth.guard';
 import { CommonModule } from '@angular/common';
@@ -14,7 +13,7 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ClienteDialogueComponent } from './components/cliente/cliente-dialogue/cliente-dialogue.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +24,8 @@ import { ClienteUpdateDiolgueComponent } from './components/cliente/cliente-upda
 import { EnderecoUpdateDiolgueComponent } from './components/cliente/endereco-update-diolgue/endereco-update-diolgue.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TextMaskModule } from 'angular2-text-mask';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { InterceptorService } from './shared/loader/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     ClienteDialogueComponent,
     ClienteUpdateDiolgueComponent,
     EnderecoUpdateDiolgueComponent,
-    SpinnerComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     ToastrModule.forRoot(),
     TextMaskModule
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

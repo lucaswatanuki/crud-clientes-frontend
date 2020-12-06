@@ -1,6 +1,7 @@
+import { LoaderService } from './shared/loader/loader.service';
 import { AuthService } from './service/auth.service';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
@@ -22,9 +23,14 @@ export class AppComponent implements OnInit {
       shareReplay()
     );
 
+  @HostListener('window:beforeunload', ['$event'])
+  public beforeunloadHandler($event) {
+    localStorage.removeItem('UserToken');
+  }
+
   isLoggedIn$ = false;
 
-  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, public loaderService: LoaderService) { }
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn();
