@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  host:  'https://kabum-clientes.herokuapp.com/',
-  api: 'https://teste-kabum-api.herokuapp.com/'
+  host:  'https://crud-clientes-frontend.herokuapp.com/',
+  api: 'https://crud-clientes-api.herokuapp.com/'
 };
