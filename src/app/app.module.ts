@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './shared/spinner-component/spinner-component.component';
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth.guard';
 import { CommonModule } from '@angular/common';
@@ -33,7 +34,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     CadastroComponent,
     ClienteDialogueComponent,
     ClienteUpdateDiolgueComponent,
-    EnderecoUpdateDiolgueComponent
+    EnderecoUpdateDiolgueComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
