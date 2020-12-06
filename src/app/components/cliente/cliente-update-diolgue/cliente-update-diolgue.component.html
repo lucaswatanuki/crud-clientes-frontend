@@ -14,30 +14,30 @@
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>RG</mat-label>
-              <input [(ngModel)]="cliente.rg" formControlName="rg" matInput placeholder="RG" required>
+              <input [textMask] = "{mask: rgMascara}" [(ngModel)]="cliente.rg" formControlName="rg" matInput placeholder="RG" required>
               <mat-icon matSuffix>portrait</mat-icon>
             </mat-form-field>
           </div>
           <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>CPF</mat-label>
-              <input [(ngModel)]="cliente.cpf" formControlName="cpf" matInput placeholder="CPF" required>
+              <input [textMask] = "{mask: cpfMascara}" [(ngModel)]="cliente.cpf" formControlName="cpf" matInput placeholder="CPF" required>
               <mat-icon matSuffix> person_pin</mat-icon>
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Telefone</mat-label>
-              <input [(ngModel)]="cliente.telefone" formControlName="telefone" matInput placeholder="Telefone" required>
+              <input [textMask] = "{mask: rgMascara}" [(ngModel)]="cliente.telefone" formControlName="telefone" matInput placeholder="Telefone" required>
               <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
           </div>
           <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Data Nascimento</mat-label>
               <input [(ngModel)]="cliente.dataNascimento" matInput [matDatepicker]="picker"
                 formControlName="dataNascimento" placeholder="Selecionar data">
@@ -46,10 +46,19 @@
             </mat-form-field>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <button mat-button (click)="onNoClick()">Fechar</button>
+            <button [disabled]="!formularioCliente.valid" mat-raised-button color="primary" (click)="updateCliente(cliente)"> Atualizar </button>
+          </div>
+        </div>
       </div>
     </form>
+
   </mat-tab>
+
   <mat-tab label="Endereço">
+
     <div>
       <table mat-table [dataSource]="enderecos" class="full-width-table">
 
@@ -76,10 +85,10 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Ações</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary" (click)="openDialog(element)">
+            <button mat-raised-button color="primary" (click)="openDialog(element, element.id)">
               <mat-icon aria-hidden="false" aria-label="edit icon">edit</mat-icon>
             </button>
-            <button mat-raised-button color="warn" (click)="deletar(element)" style="margin-left: 10px">
+            <button mat-raised-button color="warn" (click)="openConfirmationDialog(element)" style="margin-left: 10px">
               <mat-icon aria-hidden="false" aria-label="delete icon">delete</mat-icon>
             </button>
           </td>
@@ -90,10 +99,14 @@
       </table>
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
+
+    <div>
+      <div>
+        <button mat-raised-button color="primary" style="margin: 20px" (click)="openDialog(null, cliente.id)">
+          Novo Endereço
+          <mat-icon aria-hidden="false" aria-label="ADD icon">add</mat-icon>
+        </button>
+      </div>
+    </div>
   </mat-tab>
 </mat-tab-group>
-
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-raised-button color="primary"> Atualizar </button>
-</div>

@@ -22,7 +22,7 @@ export class ClienteService {
   }
 
   atualizar(cliente: Cliente): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'atualizar_cliente.php', cliente.id);
+    return this.http.put<any>(this.baseUrl + 'atualizar_cliente.php', cliente);
   }
 
   deletar(id: number): Observable<any> {

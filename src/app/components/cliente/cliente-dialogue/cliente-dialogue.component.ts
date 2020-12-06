@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { EnderecoService } from './../../../service/endereco.service';
 import { Endereco } from './../../../models/endereco.model';
 import { ClienteService } from './../../../service/cliente.service';
@@ -5,6 +6,7 @@ import { Cliente } from './../../../models/cliente.model';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cliente-dialogue',
@@ -16,25 +18,30 @@ export class ClienteDialogueComponent implements OnInit {
   cliente: Cliente;
   endereco: Endereco = new Endereco();
   formularioCliente: FormGroup;
-  hasUnitNumber = false;
+  public cpfMascara = [/[0-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+  public rgMascara = [/[0-9]/, /\d/, '-', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
+  public telefoneMascara = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+
 
   estados = [
-    {nome: 'São Paulo', sigla: 'SP'},
-    {nome: 'Rio Grande do Sul', sigla: 'RS'},
-    {nome: 'Rio de Janeiro', sigla: 'RJ'},
-    {nome: 'Minas Gerais', sigla: 'MG'},
-    {nome: 'Pernambuco', sigla: 'PE'},
-    {nome: 'Rio Grande do Norte', sigla: 'RN'},
+    { nome: 'São Paulo', sigla: 'SP' },
+    { nome: 'Rio Grande do Sul', sigla: 'RS' },
+    { nome: 'Rio de Janeiro', sigla: 'RJ' },
+    { nome: 'Minas Gerais', sigla: 'MG' },
+    { nome: 'Pernambuco', sigla: 'PE' },
+    { nome: 'Rio Grande do Norte', sigla: 'RN' },
   ];
 
 
   @ViewChild(FormGroupDirective, { static: true }) form: FormGroupDirective;
 
   constructor(private fbuilder: FormBuilder,
-    public dialogRef: MatDialogRef<ClienteDialogueComponent>,
-    private clienteService: ClienteService,
-    private enderecoService: EnderecoService,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+              public dialogRef: MatDialogRef<ClienteDialogueComponent>,
+              private clienteService: ClienteService,
+              @Inject(MAT_DIALOG_DATA) public data,
+              private toast: ToastrService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.formularioCliente = this.fbuilder.group({
@@ -42,7 +49,7 @@ export class ClienteDialogueComponent implements OnInit {
       rg: new FormControl('', Validators.required),
       cpf: new FormControl('', Validators.required),
       telefone: new FormControl('', Validators.required),
-      dataNascimento: new FormControl('', [Validators.required]),
+      dataNascimento: new FormControl('', Validators.required),
       nomeEndereco: new FormControl(''),
       numero: new FormControl(''),
       cep: new FormControl(''),
@@ -56,7 +63,7 @@ export class ClienteDialogueComponent implements OnInit {
   }
 
 
-  adicionar(form: FormGroupDirective): void {
+  adicionar(): void {
     this.cliente = new Cliente();
     this.cliente.nome = this.formularioCliente.get('nome').value;
     this.cliente.cpf = this.formularioCliente.get('cpf').value;
@@ -75,11 +82,21 @@ export class ClienteDialogueComponent implements OnInit {
 
     console.log(this.cliente);
     this.clienteService.cadastrar(this.cliente).subscribe(data => {
+      this.openSnackBar('Cliente cadastrado com sucesso.', 'OK');
       this.dialogRef.close();
     },
       error => {
+        this.toast.error('Erro ao cadastrar cliente', 'Erro');
       }
     );
   }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 15000,
+      horizontalPosition: this.horizontalPosition
+    });
+  }
+
 
 }

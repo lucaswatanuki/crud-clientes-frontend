@@ -1,4 +1,5 @@
-<h1 mat-dialog-title>Atualizar Endereco</h1>
+<h1 mat-dialog-title>Dados de Endereco</h1>
+
 <form name="form" [formGroup]='formularioEndereco'>
   <div class="row">
     <div class="col">
@@ -31,7 +32,8 @@
     </div>
     <div class="col">
       <mat-form-field appearance="outline">
-        <mat-select placeholder="Estado" formControlName="estado">
+        <mat-label>Estado</mat-label>
+        <mat-select [(ngModel)]="endereco.estado" matInput placeholder="Estado" formControlName="estado">
           <mat-option *ngFor="let estado of estados" [value]="estado.sigla">
             {{ estado.nome }}
           </mat-option>
@@ -46,6 +48,8 @@
 
 
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="update(endereco)" *ngIf="!data.element"> Salvar </button>
+  <button mat-button (click)="onNoClick()">Fechar</button>
+  <button [disabled]="!formularioEndereco.valid" mat-raised-button color="primary" (click)="update(endereco)" *ngIf="data.element"> Salvar </button>
+  <button [disabled]="!formularioEndereco.valid" mat-raised-button color="primary" (click)="salvar(endereco)" *ngIf="!data.element"> Salvar </button>
+
 </div>

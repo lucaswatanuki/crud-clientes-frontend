@@ -18,11 +18,14 @@ export class EnderecoService {
   }
 
   deletar(id: number): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'delete.php?id=' + id);
+    return this.http.get<any>(this.baseUrl + 'deletar_endereco.php?id=' + id);
   }
 
   atualizar(endereco: Endereco): Observable<any> {
-    return this.http.post<any>(this.baseUrl + 'atualizar_endereco.php', endereco.id);
+    return this.http.put<any>(this.baseUrl + 'atualizar_endereco.php', endereco);
   }
 
+  salvar(endereco: Endereco): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'endereco.php', endereco);
+  }
 }

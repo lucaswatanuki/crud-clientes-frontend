@@ -4,13 +4,17 @@ import { Cliente } from './../../models/cliente.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ClienteUpdateDiolgueComponent } from './cliente-update-diolgue/cliente-update-diolgue.component';
+import { DatePipe } from '@angular/common';
+import { ConfirmacaoDialogueComponent } from 'src/app/shared/confirmacao-dialogue/confirmacao-dialogue.component';
+import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.scss']
+  styleUrls: ['./cliente.component.scss'],
+  providers: [DatePipe]
 })
 export class ClienteComponent implements OnInit {
 
@@ -18,8 +22,11 @@ export class ClienteComponent implements OnInit {
   clientes: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', 'nome', 'rg', 'cpf', 'telefone', 'dataNascimento', 'action'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  confirmacaoDialogueRef: MatDialogRef<ConfirmacaoDialogueComponent>;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
 
-  constructor(private clienteService: ClienteService, public dialog: MatDialog) { }
+  constructor(private clienteService: ClienteService, public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getClientes();
@@ -44,6 +51,7 @@ export class ClienteComponent implements OnInit {
   deletar(cliente: Cliente): void {
     this.clienteService.deletar(cliente.id).subscribe(
       data => {
+        this.openSnackBar('Cliente excluído com sucesso', 'OK');
         this.getClientes();
       }
     );
@@ -78,4 +86,12 @@ export class ClienteComponent implements OnInit {
       );
     }
   }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 15000,
+      horizontalPosition: this.horizontalPosition
+    });
+  }
+
 }

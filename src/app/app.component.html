@@ -9,15 +9,12 @@
       <div class="profile-card">
         <img src="../assets/user-profile.jpg" alt="imagem">
         <div class="header" style="margin-bottom: 10px;">
-          {{user}}
+          <h2>{{user}}</h2>
         </div>
       </div>
       <mat-divider></mat-divider>
       <a mat-list-item routerLink="/clientes" *ngIf="isLoggedIn$">
         <mat-icon>assignment</mat-icon>Clientes
-      </a>
-      <a mat-list-item routerLink="/exemplo" *ngIf="isLoggedIn$">
-        <mat-icon>assignment</mat-icon>Exemplo
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -29,7 +26,6 @@
       </button>
       <span>{{ title }}</span>
       <span class="toolbar-spacer"> </span>
-      <mat-icon>settings</mat-icon>
       <button mat-raised-button color="warn" (click)="logout()">
         <mat-icon> logout </mat-icon>
         Logout

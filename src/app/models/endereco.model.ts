@@ -5,4 +5,5 @@ export class Endereco {
   cep: string;
   cidade: string;
   estado: string;
+  clienteId: number;
 }
