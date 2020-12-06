@@ -1,6 +1,6 @@
 # CRUD Clientes
 
-TEsse projto foi desenvolvido usando [Angular CLI](https://github.com/angular/angular-cli) versão 10.2.0.
+Esse projeto foi desenvolvido usando [Angular CLI](https://github.com/angular/angular-cli) versão 10.2.0.
 
 ## Development server
 
