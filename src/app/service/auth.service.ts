@@ -44,14 +44,14 @@ export class AuthService {
   }
 
   setToken(token: string): void {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   getToken(): string {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   deleteToken(): void {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
   }
 }
