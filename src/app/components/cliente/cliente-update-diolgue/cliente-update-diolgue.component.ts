@@ -111,7 +111,7 @@ export class ClienteUpdateDiolgueComponent implements OnInit {
 
   openSnackBar(message: string, action: string): void {
     this.snackBar.open(message, action, {
-      duration: 15000,
+      duration: 3000,
       horizontalPosition: this.horizontalPosition
     });
   }
