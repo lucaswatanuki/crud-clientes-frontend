@@ -30,7 +30,7 @@ export class ClienteUpdateDiolgueComponent implements OnInit {
   confirmacaoDialogueRef: MatDialogRef<ConfirmacaoDialogueComponent>;
 
   public cpfMascara = [/[0-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
-  public rgMascara = [/[0-9]/, /\d/, '-', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
+  public rgMascara = [/[0-9]/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
   public telefoneMascara = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
 

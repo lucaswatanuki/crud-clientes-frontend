@@ -32,7 +32,7 @@
           <div class="col">
             <mat-form-field appearance="outline" style="width: 100%;">
               <mat-label>Telefone</mat-label>
-              <input [textMask] = "{mask: rgMascara}" [(ngModel)]="cliente.telefone" formControlName="telefone" matInput placeholder="Telefone" required>
+              <input [textMask] = "{mask: telefoneMascara}" [(ngModel)]="cliente.telefone" formControlName="telefone" matInput placeholder="Telefone" required>
               <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
           </div>

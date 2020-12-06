@@ -19,7 +19,7 @@ export class ClienteDialogueComponent implements OnInit {
   endereco: Endereco = new Endereco();
   formularioCliente: FormGroup;
   public cpfMascara = [/[0-9]/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
-  public rgMascara = [/[0-9]/, /\d/, '-', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
+  public rgMascara = [/[0-9]/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/];
   public telefoneMascara = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
 
