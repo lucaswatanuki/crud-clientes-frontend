@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
   }
