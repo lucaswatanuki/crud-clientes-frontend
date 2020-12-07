@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
           this.reloadPage();
         },
         error => {
-          alert('Usuario ou senha incorreto');
+          this.toast.error('Usuario ou senha incorreto');
         });
   }
 
